@@ -1,0 +1,12 @@
+mongodb+srv://shreynagda:shrey0308@cluster0.6fnac3g.mongodb.net/?retryWrites=true&w=majority
+
+db.rooms.insert_one({'room_code': "1234", 'room_name':"Shrey's room", 'players': [{'id': "1", 'score': 0}],'max_players': 5, 'questions': [{'question': "Which is the first planet in solar system", "options": [{'a': "Earth", 'b': 'Venus', 'c': 'Mercury', 'd': "Neptune"}]}] })
+
+elif(request.method == 'PUT'):
+        _id = request.json['_id']
+        db.rooms.find_one_and_update({"_id": _id },{'$set':{"room_code": "2345"}})
+        return jsonify(f"Data updated successfully! {_id}")
+
+    elif(request.method == 'POST'):
+        _id = db.rooms.insert_one(request.json)
+        return jsonify(f"Data inserted successfully! - {str(_id)}")
